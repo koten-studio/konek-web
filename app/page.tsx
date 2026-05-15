@@ -11,8 +11,8 @@ export default function Home() {
             <Image
               src="/assets/images/konek_logo_with_text.jpeg"
               alt="Konek Logo"
-              width={300}
-              height={100}
+              width={400}
+              height={133}
               className="logo-image"
               priority
             />
@@ -56,7 +56,7 @@ export default function Home() {
 
             {/* Android Expo Button */}
             <Link
-              href="https://play.google.com/apps/internaltest/4701749578789348403"
+              href="https://play.google.com/apps/testing/com.konek.mobileapp"
               target="_blank"
               rel="noopener noreferrer"
               className="download-button"

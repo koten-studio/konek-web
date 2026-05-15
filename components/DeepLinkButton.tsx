@@ -30,7 +30,7 @@ export default function DeepLinkButton({ type, id, title }: Props) {
 
   const getStoreUrl = (platform: Platform) => {
     const testFlightUrl = 'https://testflight.apple.com/join/xMTHB8p2'
-    const androidUrl = 'https://play.google.com/apps/internaltest/4701749578789348403'
+    const androidUrl = 'https://play.google.com/apps/testing/com.konek.mobileapp'
 
     switch (platform) {
       case 'ios':

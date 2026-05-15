@@ -356,6 +356,15 @@ body {
   line-height: 1.75;
 }
 
+.privacy-link {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.privacy-link:hover {
+  opacity: 0.8;
+}
+
 .privacy-contact {
   margin-top: 1rem;
   color: var(--color-text-secondary);
