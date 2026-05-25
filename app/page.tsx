@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { CSSProperties } from 'react'
+import { GetTheAppButton } from '@/components/GetTheAppButton'
 
 const cards = [
   {
@@ -97,7 +98,7 @@ export default function Home() {
             />
             <span className="kn-brand-name">Konek</span>
           </Link>
-          <Link href="#download" className="kn-header-cta">Get the app</Link>
+          <GetTheAppButton className="kn-header-cta">Get the app</GetTheAppButton>
         </div>
       </header>
 
@@ -113,7 +114,7 @@ export default function Home() {
               Konek is the fastest way to plan and join activities with your
               friends. Tap, join, done.
             </p>
-            <div className="kn-cta-row" id="download">
+            <div className="kn-cta-row">
               <IosButton />
               <PlayButton />
             </div>
@@ -196,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* Closing */}
-      <section className="kn-closing">
+      <section className="kn-closing" id="get-the-app">
         <div className="kn-closing-inner">
           <h2 className="kn-section-title">Your friends are waiting for you.</h2>
           <p className="kn-closing-text">Free on iOS and Google Play.</p>
