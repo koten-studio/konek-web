@@ -1,12 +1,84 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import type { CSSProperties } from 'react'
 
-const activities = [
-  'Yoga', 'Running', 'Football', 'Pilates', 'Climbing',
-  'Tennis', 'Padel', 'Boxing', 'Cycling', 'Hiking',
-  'HIIT', 'Swimming', 'Dance', 'Basketball', 'Volleyball',
-  'Martial arts', 'Bouldering', 'Surfing', 'Crossfit', 'Skating',
+const cards = [
+  {
+    num: '01',
+    title: 'Create in seconds',
+    text: 'Want to go climbing, hit a concert, or plan a hike? Set up an activity in a few taps and let your friends join in.',
+  },
+  {
+    num: '02',
+    title: "See what's happening",
+    text: 'Your feed shows what your friends are planning today, this week, or anytime. Join in just one tap.',
+  },
+  {
+    num: '03',
+    title: 'Explore beyond your circle',
+    text: "Discover activities from friends of friends. Everyone's connected through someone you know, so it never feels like meeting strangers.",
+  },
+  {
+    num: '04',
+    title: 'Built for action, not addiction',
+    text: 'No likes, no followers, no algorithm. Just plans, and the people you make them with.',
+  },
 ]
+
+const cloud: Array<{
+  text: string
+  variant: 'green' | 'dark' | 'outline'
+  size: 'md' | 'lg' | 'xl'
+  rot: number
+}> = [
+  { text: 'Stop scrolling. Start showing up.', variant: 'green', size: 'xl', rot: -7 },
+  { text: 'Less talk. More plans.', variant: 'dark', size: 'lg', rot: 6 },
+  { text: 'Do more with your friends.', variant: 'outline', size: 'md', rot: -4 },
+  { text: 'Plan less. Live more.', variant: 'green', size: 'lg', rot: 9 },
+  { text: 'No likes. No followers. Just friends.', variant: 'dark', size: 'xl', rot: -3 },
+  { text: 'Built for connection. Made for moments.', variant: 'outline', size: 'md', rot: 7 },
+  { text: 'Made for action, not addiction.', variant: 'green', size: 'lg', rot: -6 },
+]
+
+function IosButton() {
+  return (
+    <Link
+      href="https://testflight.apple.com/join/xMTHB8p2"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="kn-store-btn"
+      aria-label="Download on iOS"
+    >
+      <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+      </svg>
+      <span className="kn-store-text">
+        <span className="kn-store-text-sm">Download on</span>
+        <span className="kn-store-text-lg">iOS</span>
+      </span>
+    </Link>
+  )
+}
+
+function PlayButton() {
+  return (
+    <Link
+      href="https://play.google.com/apps/testing/com.konek.mobileapp"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="kn-store-btn"
+      aria-label="Download on Google Play"
+    >
+      <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zM14.499 12.707l2.495 2.494-10.27 5.864 7.775-8.358zm3.405-3.21 2.494 1.424c.831.475.831 1.694 0 2.169l-2.494 1.424-2.79-2.792 2.79-2.225zM6.724 2.935l10.27 5.864-2.495 2.494-7.775-8.358z" />
+      </svg>
+      <span className="kn-store-text">
+        <span className="kn-store-text-sm">Download on</span>
+        <span className="kn-store-text-lg">Google Play</span>
+      </span>
+    </Link>
+  )
+}
 
 export default function Home() {
   return (
@@ -25,167 +97,112 @@ export default function Home() {
             />
             <span className="kn-brand-name">Konek</span>
           </Link>
-          <Link href="#download" className="kn-header-cta">
-            Get the app
-          </Link>
+          <Link href="#download" className="kn-header-cta">Get the app</Link>
         </div>
       </header>
 
       {/* Hero */}
       <section className="kn-hero">
         <div className="kn-hero-inner">
-          <p className="kn-kicker">
-            <span className="kn-kicker-dot" aria-hidden="true" />
-            Beta open. Free to join.
-          </p>
-
-          <h1 className="kn-display">
-            Sports, classes,
-            <br />
-            and meetups,
-            <br />
-            <span className="kn-display-mark">close to home.</span>
-          </h1>
-
-          <p className="kn-lede">
-            Konek is the free app for joining sports, fitness and social
-            activities near you, and connecting with independent yoga
-            teachers, coaches and instructors in your area.
-          </p>
-
-          <div className="kn-cta-row" id="download">
-            <Link
-              href="https://testflight.apple.com/join/xMTHB8p2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="kn-store-btn"
-              aria-label="Download on iOS TestFlight"
-            >
-              <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
-              </svg>
-              <span className="kn-store-text">
-                <span className="kn-store-text-sm">Download on</span>
-                <span className="kn-store-text-lg">iOS TestFlight</span>
-              </span>
-            </Link>
-
-            <Link
-              href="https://play.google.com/apps/testing/com.konek.mobileapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="kn-store-btn"
-              aria-label="Download on Google Play Beta"
-            >
-              <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zM14.499 12.707l2.495 2.494-10.27 5.864 7.775-8.358zm3.405-3.21 2.494 1.424c.831.475.831 1.694 0 2.169l-2.494 1.424-2.79-2.792 2.79-2.225zM6.724 2.935l10.27 5.864-2.495 2.494-7.775-8.358z" />
-              </svg>
-              <span className="kn-store-text">
-                <span className="kn-store-text-sm">Download on</span>
-                <span className="kn-store-text-lg">Google Play Beta</span>
-              </span>
-            </Link>
+          <div className="kn-hero-main">
+            <h1 className="kn-display">
+              Your friends have plans.{' '}
+              <span className="kn-display-mark">Join them.</span>
+            </h1>
+            <p className="kn-lede">
+              Konek is the fastest way to plan and join activities with your
+              friends. Tap, join, done.
+            </p>
+            <div className="kn-cta-row" id="download">
+              <IosButton />
+              <PlayButton />
+            </div>
           </div>
+
+          <aside className="kn-hero-aside" aria-labelledby="why-konek">
+            <h2 id="why-konek" className="kn-aside-title">Why we built Konek</h2>
+            <div className="kn-aside-body">
+              <p>
+                Konek is built by two young Belgians who wanted an easier way
+                to plan everyday activities with friends. The idea came from a
+                simple, annoying observation: too many good moments never
+                happen. Not because nobody wants them, but because organizing
+                them is a pain. A coffee that gets postponed three times. A
+                hike that dies in a group chat. A &ldquo;we should go
+                climbing&rdquo; that stays a &ldquo;we should&rdquo; for
+                months.
+              </p>
+              <p>
+                We didn&apos;t want another social network. We already have
+                plenty of those, and most of them are designed to keep you on
+                your phone, not to get you out into the world. So we built the
+                opposite. No feed to scroll endlessly. No likes, no followers,
+                no algorithm trying to hijack your attention. Konek does one
+                thing, and it does it well: turn an idea into a plan, and a
+                plan into a real moment with the people you actually know.
+              </p>
+              <p>
+                We also wanted to make it easy to meet friends of friends.
+                Some of the best people you&apos;ll ever click with are
+                already one step away from you. They share your interests,
+                they hang out with people you trust, but you&apos;ve just
+                never crossed paths. Konek opens that door, without ever
+                feeling like meeting strangers. Every activity you discover
+                comes through someone you know.
+              </p>
+              <p>
+                Create an activity in a few taps, see what your friends and
+                their friends are up to, join in one tap, show up.
+                That&apos;s it. Whether it&apos;s a Saturday run, a study
+                session, a concert, or just a coffee after work, Konek is
+                here to make sure these moments actually happen.
+              </p>
+            </div>
+          </aside>
         </div>
       </section>
 
-      {/* Activities marquee */}
-      <section className="kn-activities" aria-labelledby="kn-activities-h">
-        <div className="kn-activities-inner">
-          <h2 id="kn-activities-h" className="kn-eyebrow-h">What people are joining</h2>
-          <ul className="kn-tags">
-            {activities.map((a) => (
-              <li key={a} className="kn-tag">{a}</li>
+      {/* Cards */}
+      <section className="kn-cards">
+        <div className="kn-cards-inner">
+          <h2 className="kn-section-title on-dark kn-cards-title">
+            Everything you need to actually hang out.
+          </h2>
+          <ul className="kn-cards-grid">
+            {cards.map((c) => (
+              <li key={c.num} className="kn-card">
+                <span className="kn-card-num">{c.num}</span>
+                <h3 className="kn-card-title">{c.title}</h3>
+                <p className="kn-card-text">{c.text}</p>
+              </li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* How it works */}
-      <section className="kn-how">
-        <div className="kn-how-inner">
-          <div className="kn-how-head">
-            <p className="kn-eyebrow on-dark">How it works</p>
-            <h2 className="kn-section-title on-dark">
-              Three taps to your next activity.
-            </h2>
-          </div>
-
-          <ol className="kn-steps">
-            <li className="kn-step">
-              <span className="kn-step-num">01</span>
-              <h3 className="kn-step-title">Discover what&apos;s nearby</h3>
-              <p className="kn-step-text">
-                Browse activities, classes and meetups happening around
-                you, today or later this week.
-              </p>
+      {/* Cloud */}
+      <section className="kn-cloud" aria-label="What Konek stands for">
+        <ul className="kn-cloud-list">
+          {cloud.map((p, i) => (
+            <li
+              key={i}
+              className={`kn-cloud-item kn-cloud-${p.variant} kn-cloud-${p.size}`}
+              style={{ '--rot': `${p.rot}deg` } as CSSProperties}
+            >
+              {p.text}
             </li>
-            <li className="kn-step">
-              <span className="kn-step-num">02</span>
-              <h3 className="kn-step-title">Join in one tap</h3>
-              <p className="kn-step-text">
-                RSVP, see who&apos;s coming, get directions. No commitment,
-                no awkward group chats.
-              </p>
-            </li>
-            <li className="kn-step">
-              <span className="kn-step-num">03</span>
-              <h3 className="kn-step-title">Connect for real</h3>
-              <p className="kn-step-text">
-                Meet locals who share your interests, and follow the
-                independent coaches you love.
-              </p>
-            </li>
-          </ol>
-        </div>
-      </section>
-
-      {/* Big quote-like statement */}
-      <section className="kn-statement">
-        <div className="kn-statement-inner">
-          <p className="kn-statement-text">
-            Real activities. Real people. <span className="kn-statement-accent">Right around the corner.</span>
-          </p>
-        </div>
+          ))}
+        </ul>
       </section>
 
       {/* Closing */}
       <section className="kn-closing">
         <div className="kn-closing-inner">
-          <h2 className="kn-section-title">Ready when you are.</h2>
-          <p className="kn-closing-text">
-            Free during beta. Available on iOS TestFlight and Google Play.
-          </p>
-
+          <h2 className="kn-section-title">Your friends are waiting for you.</h2>
+          <p className="kn-closing-text">Free on iOS and Google Play.</p>
           <div className="kn-cta-row">
-            <Link
-              href="https://testflight.apple.com/join/xMTHB8p2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="kn-store-btn"
-            >
-              <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
-              </svg>
-              <span className="kn-store-text">
-                <span className="kn-store-text-sm">Download on</span>
-                <span className="kn-store-text-lg">iOS TestFlight</span>
-              </span>
-            </Link>
-            <Link
-              href="https://play.google.com/apps/testing/com.konek.mobileapp"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="kn-store-btn"
-            >
-              <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3.609 1.814 13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zM14.499 12.707l2.495 2.494-10.27 5.864 7.775-8.358zm3.405-3.21 2.494 1.424c.831.475.831 1.694 0 2.169l-2.494 1.424-2.79-2.792 2.79-2.225zM6.724 2.935l10.27 5.864-2.495 2.494-7.775-8.358z" />
-              </svg>
-              <span className="kn-store-text">
-                <span className="kn-store-text-sm">Download on</span>
-                <span className="kn-store-text-lg">Google Play Beta</span>
-              </span>
-            </Link>
+            <IosButton />
+            <PlayButton />
           </div>
         </div>
       </section>
