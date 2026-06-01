@@ -76,9 +76,11 @@ export default function ChildSafetyPolicy() {
             <p className="privacy-text">We rely on the following measures to keep users under 16 off the platform:</p>
             <ul className="privacy-list">
               <li>
-                <strong>User attestation:</strong> every user must declare their date
-                of birth during onboarding and accept the terms of service which
-                restrict the service to users aged 16 and over.
+                <strong>User attestation:</strong> every user must confirm during
+                onboarding that they are at least 16 years old, and accept the terms
+                of service which restrict the service to users aged 16 and over.
+                Providing an exact date of birth is optional; when a user chooses to
+                add one, the app rejects any date that would place the user under 16.
               </li>
               <li>
                 <strong>Reactive removal:</strong> any account we identify as
