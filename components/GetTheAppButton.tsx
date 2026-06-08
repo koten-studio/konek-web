@@ -2,8 +2,8 @@
 
 import type { ReactNode } from 'react'
 
-const IOS_URL = 'https://testflight.apple.com/join/xMTHB8p2'
-const PLAY_URL = 'https://play.google.com/apps/testing/com.konek.mobileapp'
+const IOS_URL = 'https://apps.apple.com/be/app/konek/id6746455896'
+const PLAY_URL = 'https://play.google.com/store/apps/details?id=com.konek.mobileapp&hl=fr'
 
 export function GetTheAppButton({
   className,

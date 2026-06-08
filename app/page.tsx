@@ -44,18 +44,18 @@ const cloud: Array<{
 function IosButton() {
   return (
     <Link
-      href="https://testflight.apple.com/join/xMTHB8p2"
+      href="https://apps.apple.com/be/app/konek/id6746455896"
       target="_blank"
       rel="noopener noreferrer"
       className="kn-store-btn"
-      aria-label="Download on iOS"
+      aria-label="Download on the App Store"
     >
       <svg className="kn-store-icon" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
         <path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
       </svg>
       <span className="kn-store-text">
-        <span className="kn-store-text-sm">Download on</span>
-        <span className="kn-store-text-lg">iOS</span>
+        <span className="kn-store-text-sm">Download on the</span>
+        <span className="kn-store-text-lg">App Store</span>
       </span>
     </Link>
   )
@@ -64,7 +64,7 @@ function IosButton() {
 function PlayButton() {
   return (
     <Link
-      href="https://play.google.com/apps/testing/com.konek.mobileapp"
+      href="https://play.google.com/store/apps/details?id=com.konek.mobileapp&hl=fr"
       target="_blank"
       rel="noopener noreferrer"
       className="kn-store-btn"
@@ -123,40 +123,44 @@ export default function Home() {
           <aside className="kn-hero-aside" aria-labelledby="why-konek">
             <h2 id="why-konek" className="kn-aside-title">Why we built Konek</h2>
             <div className="kn-aside-body">
-              <p>
-                Konek is built by two young Belgians who wanted an easier way
-                to plan everyday activities with friends. The idea came from a
-                simple, annoying observation: too many good moments never
-                happen. Not because nobody wants them, but because organizing
-                them is a pain. A coffee that gets postponed three times. A
-                hike that dies in a group chat. A &ldquo;we should go
-                climbing&rdquo; that stays a &ldquo;we should&rdquo; for
-                months.
+              <p className="kn-aside-lede">
+                Too many good moments never happen. Not because nobody wants
+                them, but because organizing them is a pain.
               </p>
-              <p>
-                We didn&apos;t want another social network. We already have
-                plenty of those, and most of them are designed to keep you on
-                your phone, not to get you out into the world. So we built the
-                opposite. No feed to scroll endlessly. No likes, no followers,
-                no algorithm trying to hijack your attention. Konek does one
-                thing, and it does it well: turn an idea into a plan, and a
-                plan into a real moment with the people you actually know.
-              </p>
-              <p>
-                We also wanted to make it easy to meet friends of friends.
-                Some of the best people you&apos;ll ever click with are
-                already one step away from you. They share your interests,
-                they hang out with people you trust, but you&apos;ve just
-                never crossed paths. Konek opens that door, without ever
-                feeling like meeting strangers. Every activity you discover
-                comes through someone you know.
-              </p>
-              <p>
-                Create an activity in a few taps, see what your friends and
-                their friends are up to, join in one tap, show up.
-                That&apos;s it. Whether it&apos;s a Saturday run, a study
-                session, a concert, or just a coffee after work, Konek is
-                here to make sure these moments actually happen.
+
+              <ul className="kn-aside-list">
+                <li>A coffee postponed three times.</li>
+                <li>A hike that dies in a group chat.</li>
+                <li>
+                  A &ldquo;we should go climbing&rdquo; that stays a
+                  &ldquo;we should&rdquo; for months.
+                </li>
+              </ul>
+
+              <div className="kn-aside-block">
+                <h3 className="kn-aside-lead">Not another social network</h3>
+                <p>
+                  No feed, no likes, no followers, no algorithm fighting for
+                  your attention. Konek does one thing well: it turns an idea
+                  into a plan, and a plan into a real moment with people you
+                  actually know.
+                </p>
+              </div>
+
+              <div className="kn-aside-block">
+                <h3 className="kn-aside-lead">Meet friends of friends</h3>
+                <p>
+                  Some of the best people you&apos;ll click with are one step
+                  away. Same interests, shared friends, paths that never
+                  crossed. Every activity you discover comes through someone
+                  you know, so it never feels like meeting strangers.
+                </p>
+              </div>
+
+              <p className="kn-aside-kicker">
+                Create in a few taps, join in one, show up. A Saturday run, a
+                study session, a concert, a coffee after work. Konek makes
+                sure it actually happens.
               </p>
             </div>
           </aside>

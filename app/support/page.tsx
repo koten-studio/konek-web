@@ -128,23 +128,21 @@ export default function Support() {
 
             <h3 className="privacy-h3">I am a coach, teacher, or instructor and want to list services</h3>
             <p className="privacy-text">
-              Konek is currently in beta. To be added to the early instructor
-              program, email <strong>support@konek.social</strong> with a short
-              description of the services you offer and the area you cover.
+              To be added to the early instructor program, email{' '}
+              <strong>support@konek.social</strong> with a short description of
+              the services you offer and the area you cover.
             </p>
           </section>
 
           <section className="privacy-section">
-            <h2 className="privacy-h2">Beta program</h2>
+            <h2 className="privacy-h2">Download Konek</h2>
             <p className="privacy-text">
-              Konek is in public beta on iOS (TestFlight) and Android (Google
-              Play closed testing). Join from the{' '}
+              Konek is available on the App Store and Google Play. Download it
+              from the{' '}
               <a href="/" className="privacy-link">
                 home page
               </a>
-              . If you are already a tester and want to leave the program,
-              follow the standard TestFlight or Google Play instructions to
-              opt out, then delete the app.
+              . To stop using Konek, simply delete the app from your device.
             </p>
           </section>
 

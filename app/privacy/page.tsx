@@ -52,6 +52,11 @@ export default function PrivacyPolicy() {
               <li>Log data (IP address, access times, app crashes)</li>
               <li>Location information (if location services are enabled)</li>
             </ul>
+
+            <h3 className="privacy-h3">Invite Link Attribution</h3>
+            <p className="privacy-text">
+              When you click an invitation link to konek.social, we temporarily store your IP address and browser type so that we can connect your click to the Konek app you subsequently install. This lets the app show you who invited you and the activity they shared. Unmatched records are deleted within 24 hours; matched records are kept for up to 7 days for support and quality monitoring before deletion.
+            </p>
           </section>
 
           <section className="privacy-section">

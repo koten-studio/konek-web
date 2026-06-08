@@ -29,18 +29,18 @@ export default function DeepLinkButton({ type, id, title }: Props) {
   const [platform] = useState<Platform>(() => detectPlatform())
 
   const getStoreUrl = (platform: Platform) => {
-    const testFlightUrl = 'https://testflight.apple.com/join/xMTHB8p2'
-    const androidUrl = 'https://play.google.com/apps/testing/com.konek.mobileapp'
+    const appStoreUrl = 'https://apps.apple.com/be/app/konek/id6746455896'
+    const androidUrl = 'https://play.google.com/store/apps/details?id=com.konek.mobileapp&hl=fr'
 
     switch (platform) {
       case 'ios':
-        return testFlightUrl
+        return appStoreUrl
       case 'android':
         return androidUrl
       case 'web':
-        return testFlightUrl
+        return appStoreUrl
       default:
-        return testFlightUrl
+        return appStoreUrl
     }
   }
 
@@ -104,7 +104,7 @@ export default function DeepLinkButton({ type, id, title }: Props) {
               </svg>
               <div className="button-text-container">
                 <div className="button-text-small">Download on</div>
-                <div className="button-text-large">iOS TestFlight</div>
+                <div className="button-text-large">App Store</div>
               </div>
             </div>
           </a>
@@ -121,7 +121,7 @@ export default function DeepLinkButton({ type, id, title }: Props) {
               </svg>
               <div className="button-text-container">
                 <div className="button-text-small">Download on</div>
-                <div className="button-text-large">Android Beta</div>
+                <div className="button-text-large">Google Play</div>
               </div>
             </div>
           </a>
