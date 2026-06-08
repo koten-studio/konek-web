@@ -8,23 +8,9 @@ interface PageProps {
 }
 
 async function getTeam(id: string) {
-  const { data: team, error } = await supabase
-    .from('groups')
-    .select(`
-      *,
-      group_members (
-        user_id,
-        role,
-        profiles (
-          id,
-          first_name,
-          last_name,
-          avatar_url
-        )
-      )
-    `)
-    .eq('id', id)
-    .single()
+  // Reads through the get_public_team SECURITY DEFINER RPC: group meta plus the
+  // member list for non-private groups only. Returns null when missing.
+  const { data: team, error } = await supabase.rpc('get_public_team', { p_id: id })
 
   if (error || !team) {
     return null

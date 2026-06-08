@@ -638,6 +638,66 @@ body {
   margin-bottom: 0;
 }
 
+/* Punchy opening line */
+.kn-aside-lede {
+  font-size: 1.0625rem !important;
+  font-weight: 600;
+  color: var(--kn-ink) !important;
+  line-height: 1.45 !important;
+}
+
+/* Pain-point list */
+.kn-aside-list {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.kn-aside-list li {
+  position: relative;
+  padding-left: 1.25rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--kn-ink-soft);
+}
+
+.kn-aside-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--kn-green-700);
+}
+
+/* Themed sub-blocks */
+.kn-aside-block {
+  margin-bottom: 1.125rem;
+}
+
+.kn-aside-lead {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--kn-ink);
+  margin-bottom: 0.375rem;
+}
+
+/* Closing kicker */
+.kn-aside-kicker {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--kn-line);
+  font-weight: 600;
+  color: var(--kn-ink) !important;
+}
+
 /* Section title (shared) */
 .kn-section-title {
   font-size: clamp(1.875rem, 4.5vw, 3rem);

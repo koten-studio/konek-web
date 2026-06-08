@@ -8,23 +8,16 @@ interface PageProps {
 }
 
 async function getProfile(id: string) {
-  const { data: profile, error } = await supabase
-    .from('profiles')
-    .select(`
-      *,
-      activities_created:activities!created_by (
-        id,
-        title
-      )
-    `)
-    .eq('id', id)
-    .single()
+  // Reads through the get_public_profile SECURITY DEFINER RPC: safe public
+  // columns only (never birthdate / latitude / longitude / altitude /
+  // location_accuracy) plus public activities. Returns null when missing.
+  const { data, error } = await supabase.rpc('get_public_profile', { p_id: id })
 
-  if (error || !profile) {
+  if (error || !data) {
     return null
   }
 
-  return profile
+  return data
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
