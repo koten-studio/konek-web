@@ -35,6 +35,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // og:url points at the short link so platforms that canonicalize to og:url
   // keep the inviter (encoded in the code) intact.
   const shortUrl = `https://konek.social/i/${code}`
+  const ogCardUrl: string | undefined = activity.og_card_url || undefined
+
+  // Prefer the pre-rendered static card (og_card_url) for an instant unfurl.
+  // When absent, OMIT images so Next falls back to the colocated
+  // opengraph-image route. `images: undefined` would suppress that fallback
+  // (Next checks hasOwnProperty('images')), so we spread conditionally.
+  const ogImages = ogCardUrl
+    ? { images: [{ url: ogCardUrl, width: 1200, height: 630, alt: title }] }
+    : {}
+  const twitterImages = ogCardUrl ? { images: [ogCardUrl] } : {}
 
   return {
     title,
@@ -44,11 +54,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description,
       url: shortUrl,
       type: 'website',
+      ...ogImages,
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      ...twitterImages,
     },
   }
 }

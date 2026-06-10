@@ -14,11 +14,9 @@ export const OG_ALT = 'Activity on Konek'
 
 // Brand palette (konek-web app/globals.css)
 const GREEN = '#6DD58C'
-const GREEN_700 = '#2E8B57'
 const PAPER = '#FBF7EC'
 const CREAM = '#F5EFE0'
 const INK = '#0E1410'
-const INK_SOFT = '#4B5448'
 
 const FONT_DIR = join(process.cwd(), 'assets', 'fonts')
 
@@ -57,8 +55,10 @@ async function loadBanner(url?: string): Promise<string | null> {
     const res = await fetch(url)
     if (!res.ok) return null
     const input = Buffer.from(await res.arrayBuffer())
+    // Resize to the exact card size (full-bleed); avoids rasterizing a larger
+    // image than the 1200x630 we display, which speeds up the satori render.
     const jpeg = await sharp(input)
-      .resize(1200, 744, { fit: 'cover', position: 'centre' })
+      .resize(1200, 630, { fit: 'cover', position: 'centre' })
       .jpeg({ quality: 82 })
       .toBuffer()
     return `data:image/jpeg;base64,${jpeg.toString('base64')}`
@@ -87,20 +87,12 @@ function formatDateBadge(startTime?: string): string | null {
   return `${day} · ${time}`
 }
 
-// Hard guard for the 2-line description: satori's WebkitLineClamp handles the
-// cosmetic clamp, but a single long unbroken token can still overflow, so we
-// also cap the character budget.
-function truncate(text: string, max: number): string {
-  const clean = text.replace(/\s+/g, ' ').trim()
-  if (clean.length <= max) return clean
-  return clean.slice(0, max - 1).trimEnd() + '…'
-}
-
+// Bright green so the pin reads against the dark bottom scrim of the banner.
 const PinIcon = (
-  <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+  <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
     <path
       d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"
-      fill={GREEN_700}
+      fill={GREEN}
     />
   </svg>
 )
@@ -144,141 +136,105 @@ export async function renderActivityCard(activity: ActivityCardData | null): Pro
 
   const banner = await loadBanner(activity.banner_url || activity.banner_image_url)
   const dateBadge = formatDateBadge(activity.start_time)
-  const title = truncate(activity.title || 'Activity', 70)
-  const description = activity.description ? truncate(activity.description, 130) : null
   const locationText = activity.poi_name || activity.location || activity.address_full || null
 
+  // Full-bleed banner. Title and description are intentionally omitted: the
+  // unfurling platform (WhatsApp/Messenger/etc.) already renders og:title and
+  // og:description below the image, so repeating them here is redundant. Only
+  // the date badge and location are overlaid on the banner.
   return new ImageResponse(
     (
       <div
         style={{
+          position: 'relative',
           width: '100%',
           height: '100%',
           display: 'flex',
-          flexDirection: 'column',
-          background: PAPER,
           fontFamily: 'Inter',
         }}
       >
-        {/* Cover zone with date overlay badge */}
-        <div
-          style={{
-            display: 'flex',
-            position: 'relative',
-            width: '100%',
-            height: 372,
-          }}
-        >
-          {banner ? (
-            <img
-              src={banner}
-              width={1200}
-              height={372}
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            />
-          ) : (
-            <div
-              style={{
-                display: 'flex',
-                width: '100%',
-                height: '100%',
-                background: `linear-gradient(135deg, ${CREAM} 0%, ${GREEN} 100%)`,
-              }}
-            />
-          )}
-
-          {dateBadge && (
-            <div
-              style={{
-                position: 'absolute',
-                top: 28,
-                left: 28,
-                display: 'flex',
-                alignItems: 'center',
-                background: GREEN,
-                color: INK,
-                fontSize: 30,
-                fontWeight: 700,
-                padding: '12px 24px',
-                borderRadius: 999,
-                boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
-              }}
-            >
-              {dateBadge}
-            </div>
-          )}
-        </div>
-
-        {/* Content panel */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            flex: 1,
-            padding: '34px 56px',
-            justifyContent: 'center',
-          }}
-        >
+        {banner ? (
+          <img
+            src={banner}
+            width={1200}
+            height={630}
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        ) : (
           <div
             style={{
               display: 'flex',
-              fontSize: 54,
-              fontWeight: 700,
+              width: '100%',
+              height: '100%',
+              background: `linear-gradient(135deg, ${CREAM} 0%, ${GREEN} 100%)`,
+            }}
+          />
+        )}
+
+        {/* Bottom scrim so the location stays legible over any banner */}
+        {locationText && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              width: '100%',
+              height: 200,
+              display: 'flex',
+              background: 'linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 100%)',
+            }}
+          />
+        )}
+
+        {dateBadge && (
+          <div
+            style={{
+              position: 'absolute',
+              top: 28,
+              left: 28,
+              display: 'flex',
+              alignItems: 'center',
+              background: GREEN,
               color: INK,
-              lineHeight: 1.1,
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
+              fontSize: 32,
+              fontWeight: 700,
+              padding: '14px 28px',
+              borderRadius: 999,
+              boxShadow: '0 6px 18px rgba(0,0,0,0.25)',
             }}
           >
-            {title}
+            {dateBadge}
           </div>
+        )}
 
-          {description && (
-            <div
-              style={{
-                display: '-webkit-box',
-                marginTop: 16,
-                fontSize: 30,
-                fontWeight: 400,
-                color: INK_SOFT,
-                lineHeight: 1.35,
-                WebkitLineClamp: 2,
-                WebkitBoxOrient: 'vertical',
-                overflow: 'hidden',
-              }}
-            >
-              {description}
-            </div>
-          )}
-
-          {locationText && (
+        {locationText && (
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 36,
+              left: 40,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+              maxWidth: 1120,
+            }}
+          >
+            {PinIcon}
             <div
               style={{
                 display: 'flex',
-                alignItems: 'center',
-                marginTop: 20,
-                gap: 10,
+                fontSize: 36,
+                fontWeight: 700,
+                color: '#FFFFFF',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
             >
-              {PinIcon}
-              <div
-                style={{
-                  display: 'flex',
-                  fontSize: 28,
-                  fontWeight: 500,
-                  color: GREEN_700,
-                  whiteSpace: 'nowrap',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  maxWidth: 1020,
-                }}
-              >
-                {locationText}
-              </div>
+              {locationText}
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     ),
     { ...OG_SIZE, fonts, headers: cacheHeaders },
