@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getActivity } from '@/lib/activity'
 import ActivityPreview from '@/components/ActivityPreview'
+import PreviewShell from '@/components/PreviewShell'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -49,5 +50,9 @@ export default async function ActivityPage({ params }: PageProps) {
     notFound()
   }
 
-  return <ActivityPreview activity={activity} />
+  return (
+    <PreviewShell>
+      <ActivityPreview activity={activity} />
+    </PreviewShell>
+  )
 }

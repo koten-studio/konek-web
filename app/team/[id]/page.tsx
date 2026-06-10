@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import TeamPreview from '@/components/TeamPreview'
+import PreviewShell from '@/components/PreviewShell'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -60,5 +61,9 @@ export default async function TeamPage({ params }: PageProps) {
     notFound()
   }
 
-  return <TeamPreview team={team} />
+  return (
+    <PreviewShell>
+      <TeamPreview team={team} />
+    </PreviewShell>
+  )
 }

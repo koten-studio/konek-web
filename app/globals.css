@@ -982,7 +982,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .kn-store-btn,
   .kn-header-cta,
-  .kn-cloud-item {
+  .kn-cloud-item,
+  .kn-open-btn {
     transition: none;
   }
 
@@ -990,4 +991,95 @@ body {
   .kn-cloud-item {
     transform: none !important;
   }
+}
+
+/* =========================================
+   Share / Preview pages (/i, /activity, ...)
+   ========================================= */
+
+.kn-preview-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.kn-preview-main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(2rem, 6vw, 4rem) 1.25rem clamp(3rem, 7vw, 5rem);
+}
+
+/* Primary "Open in Konek" pill */
+.kn-open-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.9rem 1.5rem;
+  background: var(--kn-green);
+  color: var(--kn-green-900);
+  border: none;
+  border-radius: 14px;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  cursor: pointer;
+  box-shadow: 0 6px 0 rgba(20, 58, 36, 0.16);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.kn-open-btn:hover {
+  background: #5fc97f;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 0 rgba(20, 58, 36, 0.18);
+}
+
+.kn-open-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 0 rgba(20, 58, 36, 0.18);
+}
+
+.kn-open-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.kn-open-btn:focus-visible {
+  outline: 3px solid rgba(20, 58, 36, 0.45);
+  outline-offset: 3px;
+}
+
+.kn-open-btn-icon {
+  width: 1.125rem;
+  height: 1.125rem;
+  flex-shrink: 0;
+}
+
+/* Download section */
+.kn-download {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--kn-line);
+  text-align: center;
+}
+
+.kn-download-label {
+  margin: 0 0 1rem;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--kn-ink-soft);
+}
+
+.kn-download-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kn-download-buttons .kn-store-btn {
+  justify-content: center;
 }

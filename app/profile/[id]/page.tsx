@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { supabase } from '@/lib/supabase'
 import ProfilePreview from '@/components/ProfilePreview'
+import PreviewShell from '@/components/PreviewShell'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -62,5 +63,9 @@ export default async function ProfilePage({ params }: PageProps) {
     notFound()
   }
 
-  return <ProfilePreview profile={profile} />
+  return (
+    <PreviewShell>
+      <ProfilePreview profile={profile} />
+    </PreviewShell>
+  )
 }

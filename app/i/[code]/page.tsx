@@ -4,6 +4,7 @@ import { getActivity } from '@/lib/activity'
 import { resolveShareCode } from '@/lib/shareLink'
 import ActivityPreview from '@/components/ActivityPreview'
 import ShareAttribution from '@/components/ShareAttribution'
+import PreviewShell from '@/components/PreviewShell'
 
 // Short share-link landing. Resolves the opaque code to (activity, inviter)
 // and renders the activity preview in place — the short URL stays in the bar
@@ -65,9 +66,9 @@ export default async function ShareCodePage({ params }: PageProps) {
   }
 
   return (
-    <>
+    <PreviewShell>
       <ShareAttribution inviterId={link.inviterId} activityId={link.activityId} />
       <ActivityPreview activity={activity} />
-    </>
+    </PreviewShell>
   )
 }
