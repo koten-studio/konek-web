@@ -41,8 +41,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // When absent, OMIT images so Next falls back to the colocated
   // opengraph-image route. `images: undefined` would suppress that fallback
   // (Next checks hasOwnProperty('images')), so we spread conditionally.
+  // secureUrl + type help WhatsApp (a separate crawler) and other unfurlers
+  // that are picky about og:image:secure_url / og:image:type. The static card
+  // is always a JPEG in the public og-cards bucket.
   const ogImages = ogCardUrl
-    ? { images: [{ url: ogCardUrl, width: 1200, height: 630, alt: title }] }
+    ? { images: [{ url: ogCardUrl, secureUrl: ogCardUrl, type: 'image/jpeg', width: 1200, height: 630, alt: title }] }
     : {}
   const twitterImages = ogCardUrl ? { images: [ogCardUrl] } : {}
 
